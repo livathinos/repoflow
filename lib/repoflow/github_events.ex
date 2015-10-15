@@ -11,11 +11,10 @@ defmodule Repoflow.GithubEvents do
     "https://api.github.com/repos/#{user}/#{project}/events"
   end
 
-  def handle_response(%{status_code: 200, body: body}) do
-    { :ok, body }
-  end
-
-  def handle_reponse(%{status_code: __, body: body}) do
-    { :error, body }
+  def handle_response({ atom, %HTTPoison.Response{status_code: code, body: body}}) do
+    case code do
+      200 -> { atom, body }
+      404 -> { atom, "Not found" }
+    end
   end
 end
