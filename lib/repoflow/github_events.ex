@@ -13,8 +13,8 @@ defmodule Repoflow.GithubEvents do
 
   def handle_response({ atom, %HTTPoison.Response{status_code: code, body: body}}) do
     case code do
-      200 -> { atom, body }
-      404 -> { atom, "Not found" }
+      200 -> { atom, :jsx.decode(body) }
+      404 -> { atom, :jsx.decode(body) }
     end
   end
 end

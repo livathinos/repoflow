@@ -29,7 +29,8 @@ defmodule Repoflow.Mixfile do
   # Type `mix help deps` for more examples and options
   defp deps do
     [
-      {:httpoison, github: "edgurgel/httpoison"}
+      {:httpoison, github: "edgurgel/httpoison"},
+      {:jsx, github: "talentdeficit/jsx"}
     ]
   end
 
