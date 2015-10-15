@@ -1,4 +1,6 @@
 defmodule Repoflow.CLI do
+  import Repoflow.TableFormatter, only: [ print_table: 2 ]
+
   @default_count 4
 
   def run(argv) do
@@ -38,6 +40,7 @@ defmodule Repoflow.CLI do
     |> convert_to_list_of_hashdicts
     |> sort_into_ascending_order
     |> Enum.take(count)
+    |> print_table(["number", "created_at", "title"])
   end
 
   def decode_response({ :ok, body }), do: body
