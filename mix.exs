@@ -15,7 +15,7 @@ defmodule Repoflow.Mixfile do
   #
   # Type `mix help compile.app` for more information
   def application do
-    [applications: [:httpotion]]
+    [applications: [:logger, :httpoison]]
   end
 
   # Dependencies can be Hex packages:
@@ -29,10 +29,7 @@ defmodule Repoflow.Mixfile do
   # Type `mix help deps` for more examples and options
   defp deps do
     [
-      {:httpotion, github: "myfreeweb/httpotion"},
-      {:jsx, github: "talentdeficit/jsx"},
-      {:ex_doc, github: "elixir-lang/ex_doc"},
-      {:earmark, "~> 0.1.0"}
+      {:httpoison, github: "edgurgel/httpoison"}
     ]
   end
 

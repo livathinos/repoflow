@@ -1,5 +1,9 @@
 %{"earmark": {:hex, :earmark, "0.1.17"},
   "ex_doc": {:git, "git://github.com/elixir-lang/ex_doc.git", "63342194e8a572485b37b4a58668f9b43ab7ab26", []},
+  "hackney": {:hex, :hackney, "1.3.2"},
+  "httpoison": {:git, "git://github.com/edgurgel/httpoison.git", "49ac32fa3f424b20749d55e86cffc37d55efc00a", []},
   "httpotion": {:git, "git://github.com/myfreeweb/httpotion.git", "438abe0afe09addb91b39a9f9db92a13904adf61", []},
   "ibrowse": {:git, "git://github.com/cmullaparthi/ibrowse.git", "ea3305d21f37eced4fac290f64b068e56df7de80", [tag: "v4.1.2"]},
-  "jsx": {:git, "git://github.com/talentdeficit/jsx.git", "3074d4865b3385a050badf7828ad31490d860df5", []}}
+  "idna": {:hex, :idna, "1.0.2"},
+  "jsx": {:git, "git://github.com/talentdeficit/jsx.git", "3074d4865b3385a050badf7828ad31490d860df5", []},
+  "ssl_verify_hostname": {:hex, :ssl_verify_hostname, "1.0.5"}}
