@@ -6,6 +6,7 @@ defmodule Repoflow.Mixfile do
      version: "0.0.1",
      name: "Repoflow",
      elixir: "~> 1.0",
+     escript: escript_config,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps]
