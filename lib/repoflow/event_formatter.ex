@@ -1,5 +1,5 @@
 defmodule Repoflow.EventFormatter do
-  import Enum, only: [ reduce: 3, each: 2, into: 2 ]
+  import Enum, only: [ each: 2, map: 2, map_join: 3, max: 1 ]
 
   def print_flow(rows) do
     mapped_events = map_events(rows)

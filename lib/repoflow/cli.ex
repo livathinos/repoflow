@@ -1,5 +1,5 @@
 defmodule Repoflow.CLI do
-  import Repoflow.TableFormatter, only: [ print_table: 2 ]
+  import Repoflow.EventFormatter, only: [ print_flow: 1 ]
 
   @default_count 4
 
@@ -37,10 +37,10 @@ defmodule Repoflow.CLI do
   def process({user, project, count}) do
     Repoflow.GithubEvents.fetch(user, project)
     |> decode_response
-    |> convert_to_list_of_hashdicts
+    |> to_list_of_hashes
     |> sort_into_ascending_order
     |> Enum.take(count)
-    |> print_table(["number", "created_at", "title"])
+    |> print_flow
   end
 
   def decode_response({ :ok, body }), do: body
@@ -51,8 +51,8 @@ defmodule Repoflow.CLI do
       System.halt(2)
   end
 
-  def convert_to_list_of_hashdicts(list) do list
-    |> Enum.map(&Enum.into(&1, HashDict.new))
+  def to_list_of_hashes(list) do
+    list |> Enum.map(&Enum.into(&1, HashDict.new))
   end
 
   def sort_into_ascending_order(list_of_issues) do
