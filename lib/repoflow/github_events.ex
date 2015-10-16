@@ -1,6 +1,7 @@
 defmodule Repoflow.GithubEvents do
   @user_agent [ {"User-agent", "Elixir spyros@zendesk.com" } ]
   @github_url Application.get_env(:events, :github_url)
+  @access_token Application.get_env(:events, :access_token)
 
   def fetch(user, project) do
     events_url(user, project)
@@ -9,7 +10,7 @@ defmodule Repoflow.GithubEvents do
   end
 
   def events_url(user, project) do
-    "#{@github_url}/repos/#{user}/#{project}/events"
+    "#{@github_url}/repos/#{user}/#{project}/issues/events?access_token=#{@access_token}"
   end
 
   def handle_response({ atom, %HTTPoison.Response{status_code: code, body: body}}) do
