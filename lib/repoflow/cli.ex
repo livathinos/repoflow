@@ -1,7 +1,7 @@
 defmodule Repoflow.CLI do
   import Repoflow.EventFormatter, only: [ print_flow: 1 ]
 
-  @default_count 4
+  @default_count 15
 
   def main(argv) do
     argv
@@ -29,7 +29,7 @@ defmodule Repoflow.CLI do
 
   def process(:help) do
     IO.puts """
-    usage: flow <user> <project> [ count | #{@default_count} ]
+    usage: repoflow <user> <project> [ count | #{@default_count} ]
     """
     System.halt(0)
   end
