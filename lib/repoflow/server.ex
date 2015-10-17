@@ -12,6 +12,8 @@ defmodule Repoflow.Server do
 
   def handle_info(:collect, state) do
     GenServer.cast self, :render
+    Process.send_after self, :collect, 30000
+
     {:noreply, state}
   end
 
