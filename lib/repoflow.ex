@@ -1,5 +1,7 @@
 defmodule Repoflow do
   def main(opts \\ []) do
-    Repoflow.Server.start_link(opts)
+    { :ok, pid } = GenServer.start_link Repoflow.Server, opts
+
+    pid
   end
 end
