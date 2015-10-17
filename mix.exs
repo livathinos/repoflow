@@ -36,6 +36,6 @@ defmodule Repoflow.Mixfile do
   end
 
   def escript_config do
-    [ main_module: Repoflow.CLI ]
+    [ main_module: Repoflow ]
   end
 end

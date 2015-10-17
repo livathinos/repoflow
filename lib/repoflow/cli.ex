@@ -3,7 +3,7 @@ defmodule Repoflow.CLI do
 
   @default_count 15
 
-  def main(argv) do
+  def run(argv) do
     argv
       |> parse_args
       |> process
