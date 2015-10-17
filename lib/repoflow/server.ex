@@ -6,8 +6,13 @@ defmodule Repoflow.Server do
              paused?: false]
 
   def init(opts) do
-    GenServer.cast self, :render
+    send self, :collect
     {:ok, opts}
+  end
+
+  def handle_info(:collect, state) do
+    GenServer.cast self, :render
+    {:noreply, state}
   end
 
   def handle_cast(:render, state) do
