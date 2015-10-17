@@ -1,8 +1,8 @@
 # This file is responsible for configuring your application
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
-config :events, github_url: "https://api.github.com"
-config :events, access_token: "123"
+config :repoflow, github_url: "https://api.github.com"
+config :repoflow, access_token: "123"
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
