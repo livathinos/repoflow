@@ -36,6 +36,6 @@ defmodule Repoflow.Mixfile do
   end
 
   def escript_config do
-    [ main_module: Repoflow ]
+    [ main_module: Repoflow, emu_args: "-noinput -elixir ansi_enabled true" ]
   end
 end
