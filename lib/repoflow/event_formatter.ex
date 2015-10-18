@@ -1,6 +1,4 @@
 defmodule Repoflow.EventFormatter do
-  import Enum, only: [ each: 2, map: 2, max: 1 ]
-
   def print_flow(rows) do
     mapped_events = map_events(rows)
 
@@ -25,6 +23,10 @@ defmodule Repoflow.EventFormatter do
   end
 
   def print_event(event) do
-    IO.puts inspect(event)
+    {id, event_body} = event
+
+    IO.puts IO.ANSI.yellow() <> "[#{String.capitalize(event_body.event)}]" <>
+      IO.ANSI.white() <> " [##{event_body.number}]" <>
+      IO.ANSI.reset() <>" #{event_body.title} by #{event_body.user}\n"
   end
 end

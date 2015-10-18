@@ -13,7 +13,7 @@ defmodule Repoflow.Server do
   def handle_info(:collect, state) do
     GenServer.cast self, :render
     Repoflow.CLI.run(state)
-    Process.send_after self, :collect, 30000
+    Process.send_after self, :collect, 60000
 
     {:noreply, state}
   end
