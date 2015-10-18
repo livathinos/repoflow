@@ -2,7 +2,7 @@ defmodule Repoflow.EventFormatter do
   def print_flow(rows) do
     mapped_events = map_events(rows)
 
-    Enum.each(mapped_events, fn(event) -> print_event(event) end)
+    Enum.each(mapped_events, fn(event) -> IO.puts(format_event(event)) end)
   end
 
   def map_events(rows) do
@@ -22,10 +22,10 @@ defmodule Repoflow.EventFormatter do
     end
   end
 
-  def print_event(event) do
+  def format_event(event) do
     {id, event_body} = event
 
-    IO.puts "| " <>
+    "| " <>
       IO.ANSI.yellow()  <> " #{justify(String.capitalize(event_body.event), 10, :left)}" <>
       IO.ANSI.white()   <> " #{justify("[##{event_body.number}]", 8, :left)}" <>
       IO.ANSI.reset()   <> " #{justify(event_body.title, 70, :left)}" <>
