@@ -12,30 +12,34 @@ defmodule Repoflow.CLI do
   def parse_args(argv) do
     parse = OptionParser.parse(
       argv,
-      switches: [ help: :boolean],
+      switches: [ help: :boolean, token: :string],
       aliases: [h: :help]
     )
 
     case parse do
       { [ help: true ], _, _ }
         -> :help
+      { [ access_token ], [ user, project, count ], _ }
+        -> { user, project, count, access_token }
+      { [ access_token ], [ user, project ], _ }
+        -> { user, project, @default_count, access_token }
       { _, [ user, project, count ], _ }
-        -> { user, project, String.to_integer(count) }
+        -> { user, project, count, {:token, ""} }
       { _, [ user, project ], _ }
-        -> { user, project, @default_count }
+        -> { user, project, @default_count, {:token, ""} }
       _ -> :help
     end
   end
 
   def process(:help) do
     IO.puts """
-    usage: repoflow <user> <project> [ count | #{@default_count} ]
+    usage: repoflow <user> <project> [ count | #{@default_count} ] [ --token=<token> ]
     """
     System.halt(0)
   end
 
-  def process({user, project, count}) do
-    Repoflow.GithubEvents.fetch(user, project)
+  def process({user, project, count, access_token}) do
+    Repoflow.GithubEvents.fetch(user, project, access_token)
     |> decode_response
     |> to_list_of_hashes
     |> sort_into_ascending_order
