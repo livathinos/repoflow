@@ -1,9 +1,9 @@
 defmodule Repoflow.Server do
   use GenServer
 
-  defstruct [:node, :data, :schedulers_snapshot,
-             selected: 0, offset: 0, sort_by: :pid, sort_order: :ascending,
-             paused?: false]
+  def start_link(opts \\ []) do
+    GenServer.start_link __MODULE__, opts
+  end
 
   def init(opts) do
     send self, :collect
@@ -12,6 +12,7 @@ defmodule Repoflow.Server do
 
   def handle_info(:collect, state) do
     GenServer.cast self, :render
+    Repoflow.CLI.run(state)
     Process.send_after self, :collect, 30000
 
     {:noreply, state}
