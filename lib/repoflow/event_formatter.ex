@@ -25,8 +25,22 @@ defmodule Repoflow.EventFormatter do
   def print_event(event) do
     {id, event_body} = event
 
-    IO.puts IO.ANSI.yellow() <> "[#{String.capitalize(event_body.event)}]" <>
-      IO.ANSI.white() <> " [##{event_body.number}]" <>
-      IO.ANSI.reset() <>" #{event_body.title} by #{event_body.user}\n"
+    IO.puts "| " <>
+      IO.ANSI.yellow()  <> " #{justify(String.capitalize(event_body.event), 10, :left)}" <>
+      IO.ANSI.white()   <> " #{justify("[##{event_body.number}]", 8, :left)}" <>
+      IO.ANSI.reset()   <> " #{justify(event_body.title, 70, :left)}" <>
+      IO.ANSI.magenta() <> " #{justify(event_body.user, 10, :right)}" <>
+      IO.ANSI.reset()   <> "\n"
+  end
+
+  defp justify(string, length, align) do
+    if String.length(string) > length do
+      String.slice(string, 0, length - 1) <> "…"
+    else
+      case align do
+        :left -> String.ljust(string, length)
+        :right -> String.rjust(string, length)
+      end
+    end
   end
 end
